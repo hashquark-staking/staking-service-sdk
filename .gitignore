@@ -1,0 +1,16 @@
+# Default ignored files
+/.idea
+/.vscode
+__debug_bin
+/build
+/configs/config.yaml
+migrations
+go.sum
+/cmd/cmd.exe
+/cmd/NftMarket
+/test
+truffle-config.js
+path
+/contracts/artifacts
+/upload-temp-*
+/logs
