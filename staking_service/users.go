@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (stakingService *StakingService) ListUsers(pageNum, pageSize uint64) (result *PageResult[User], code uint, msg string, err error) {
+func (stakingService *StakingService) ListUsers(pageNum, pageSize uint) (result *PageResult[User], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageNum))
 	req.SetQueryParam("pageSize", fmt.Sprintf("%d", pageSize))
@@ -14,7 +14,6 @@ func (stakingService *StakingService) ListUsers(pageNum, pageSize uint64) (resul
 	}
 
 	return processResponse[PageResult[User]](res)
-
 }
 
 func (stakingService *StakingService) GetUserDetails(uid string) (result *UserDetails, code uint, msg string, err error) {

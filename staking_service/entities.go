@@ -40,3 +40,35 @@ type CreateUserParams struct {
 	Email   string `json:"email"`
 	Address string `json:"address"`
 }
+
+type Deposit struct {
+	ID              uint64 `json:"id"`
+	BrokerID        uint64 `json:"brokerId"`
+	FromAddress     string `json:"fromAddress"`
+	ContractAddress string `json:"contractAddress"`
+	TxHash          string `json:"txHash"`
+	ChainName       string `json:"chainName"`
+	BlockHeight     uint64 `json:"blockHeight"`
+	Slot            uint64 `json:"slot"`
+	BlockTime       uint64 `json:"blockTime"`
+}
+
+type DepositDetails struct {
+	Deposit
+	Validators ValidatorList `json:"validators"`
+}
+
+type UserValidators struct {
+	BrokerUserID uint64        `json:"-"`
+	UID          string        `json:"uid"`
+	Validators   ValidatorList `json:"validators"`
+}
+
+type ValidatorAssignmentParams struct {
+	Assignments []Assignment `json:"assignments"`
+}
+
+type Assignment struct {
+	UID            string `json:"uid"`
+	ValidatorCount int    `json:"validatorCount"`
+}
