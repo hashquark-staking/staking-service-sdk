@@ -25,7 +25,7 @@ func NewStakingService(baseURL, privateKey, address string) (*StakingService, er
 	stakingService.privateKey, err = crypto.HexToECDSA(privateKey)
 	stakingService.address = address
 	stakingService.c = req.C()
-	stakingService.c.BaseURL = baseURL
+	stakingService.c.SetBaseURL(baseURL)
 
 	return stakingService, err
 }

@@ -72,3 +72,23 @@ type Assignment struct {
 	UID            string `json:"uid"`
 	ValidatorCount int    `json:"validatorCount"`
 }
+
+type Reward struct {
+	Date              string `json:"date"`
+	TotalCount        int64  `json:"totalCount"`
+	ActiveCount       int64  `json:"activeCount"`
+	ExitCount         int64  `json:"exitCount"`
+	Balance           string `json:"balance"`
+	Principal         string `json:"principal"`
+	Apr               string `json:"apr"`
+	CumulativeRewards string `json:"cumulativeRewards"`
+	CumulativeStaking string `json:"cumulativeStaking"`
+	CumulativeGasFee  string `json:"cumulativeGasFee"`
+	Rewards           string `json:"rewards"`
+	Staking           string `json:"staking"`
+	GasFee            string `json:"gasFee"`
+	Withdrawal        string `json:"withdrawal"`
+	Rate              string `json:"rate"`
+}
+
+type RewardList []Reward

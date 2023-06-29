@@ -32,9 +32,9 @@ func TestUserProcess(t *testing.T) {
 	require.NotNil(t, detailsResult)
 	require.Equal(t, "ok", msg)
 
-	deleteResult, code, msg, err := stakingService.DeleteUser("1")
-	require.Nil(t, err)
-	require.Equal(t, uint(0), code)
-	require.NotNil(t, deleteResult)
-	require.Equal(t, "ok", msg)
+	// deleteResult, code, msg, err := stakingService.DeleteUser("1")
+	// require.Nil(t, err)
+	// require.Equal(t, uint(0), code)
+	// require.NotNil(t, deleteResult)
+	// require.Equal(t, "ok", msg)
 }

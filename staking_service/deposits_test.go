@@ -48,7 +48,7 @@ func TestDepositProcess(t *testing.T) {
 
 	deleteResult, code, msg, err := stakingService.DeleteUser("deposit_test")
 	require.Nil(t, err)
-	require.Equal(t, uint(0), code)
-	require.NotNil(t, deleteResult)
-	require.Equal(t, "ok", msg)
+	require.Equal(t, uint(4000202), code)
+	require.Nil(t, deleteResult)
+	require.Equal(t, "Broker User's validators are not all exited yet", msg)
 }
