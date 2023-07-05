@@ -65,9 +65,8 @@ type DepositDetails struct {
 }
 
 type UserValidators struct {
-	BrokerUserID uint64        `json:"-"`
-	UID          string        `json:"uid"`
-	Validators   ValidatorList `json:"validators"`
+	UID        string        `json:"uid"`
+	Validators ValidatorList `json:"validators"`
 }
 
 type ValidatorAssignmentParams struct {
