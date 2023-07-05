@@ -31,6 +31,12 @@ type Validator struct {
 	UID            string `json:"uid"`
 	ValidatorIndex uint64 `json:"validatorIndex"`
 	Pubkey         string `json:"pubkey"`
+	Balance        string `json:"balance"`
+	TotalRewards   string `json:"totalRewards"`
+	Status         string `json:"status"`
+	ActivationTime string `json:"ActivationTime"`
+	ExitTime       string `json:"exitTime"`
+	Principal      string `json:"principal"`
 }
 
 type ValidatorList []Validator

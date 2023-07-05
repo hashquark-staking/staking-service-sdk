@@ -2,11 +2,10 @@ package staking_service
 
 import (
 	"fmt"
-	"log"
-	"testing"
-
 	"github.com/k0kubun/pp"
 	"github.com/stretchr/testify/require"
+	"log"
+	"testing"
 )
 
 func TestDepositProcess(t *testing.T) {
