@@ -24,13 +24,17 @@ type User struct {
 
 type UserDetails struct {
 	User
-	Validators ValidatorList `json:"validators"`
+	Validators ValidatorDetailList `json:"validators"`
 }
 
 type Validator struct {
 	UID            string `json:"uid"`
 	ValidatorIndex uint64 `json:"validatorIndex"`
 	Pubkey         string `json:"pubkey"`
+}
+
+type ValidatorDetail struct {
+	Validator
 	Balance        string `json:"balance"`
 	TotalRewards   string `json:"totalRewards"`
 	Status         string `json:"status"`
@@ -39,6 +43,7 @@ type Validator struct {
 	Principal      string `json:"principal"`
 }
 
+type ValidatorDetailList []ValidatorDetail
 type ValidatorList []Validator
 
 type CreateUserParams struct {
@@ -61,7 +66,7 @@ type Deposit struct {
 
 type DepositDetails struct {
 	Deposit
-	Validators ValidatorList `json:"validators"`
+	Validators ValidatorDetailList `json:"validators"`
 }
 
 type UserValidators struct {
