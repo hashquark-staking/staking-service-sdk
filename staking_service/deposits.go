@@ -38,7 +38,7 @@ func (stakingService *StakingService) AssignDepositedValidators(txHash string, v
 func (stakingService *StakingService) BatchAssignDepositedValidators(batchValidatorAssignmentParams BatchValidatorAssignmentParams) (result *[]UserValidators, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetBody(batchValidatorAssignmentParams)
-	res, err := req.Send("POST", fmt.Sprintf("/openapi/deposits/validators_assign"))
+	res, err := req.Send("POST", fmt.Sprintf("/openapi/deposits_assignments"))
 	if err != nil {
 		return
 	}
