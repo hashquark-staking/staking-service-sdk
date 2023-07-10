@@ -78,6 +78,11 @@ type ValidatorAssignmentParams struct {
 	Assignments []Assignment `json:"assignments"`
 }
 
+type BatchValidatorAssignmentParams struct {
+	Assignments []Assignment `json:"assignments"`
+	TxHashs     []string     `json:"tx_hashs"`
+}
+
 type Assignment struct {
 	UID            string `json:"uid"`
 	ValidatorCount int    `json:"validatorCount"`
