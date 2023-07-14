@@ -14,12 +14,9 @@ type PageResult[T any] struct {
 }
 
 type User struct {
-	ID            uint64  `json:"id"`
-	BrokerID      uint64  `json:"brokerID"`
-	UID           string  `json:"uid"`
-	Email         *string `json:"email"`
-	Address       *string `json:"address"`
-	CommissionFee uint    `json:"commissionFee"`
+	ID       uint64 `json:"id"`
+	BrokerID uint64 `json:"brokerID"`
+	UID      string `json:"uid"`
 }
 
 type UserDetails struct {
@@ -47,9 +44,7 @@ type ValidatorDetailList []ValidatorDetail
 type ValidatorList []Validator
 
 type CreateUserParams struct {
-	UID     string `json:"uid"`
-	Email   string `json:"email"`
-	Address string `json:"address"`
+	UID string `json:"uid"`
 }
 
 type Deposit struct {

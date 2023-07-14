@@ -26,11 +26,9 @@ func (stakingService *StakingService) GetUserDetails(uid string) (result *UserDe
 	return processResponse[UserDetails](res)
 }
 
-func (stakingService *StakingService) CreateUser(uid, email, address string) (result *User, code uint, msg string, err error) {
+func (stakingService *StakingService) CreateUser(uid string) (result *User, code uint, msg string, err error) {
 	createUserParams := new(CreateUserParams)
 	createUserParams.UID = uid
-	createUserParams.Email = email
-	createUserParams.Address = address
 
 	// paramBytes, err := json.Marshal(createUserParams)
 	// if err != nil {

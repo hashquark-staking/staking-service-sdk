@@ -21,7 +21,7 @@ func TestDepositProcess(t *testing.T) {
 	fmt.Println(depositResult, code, msg, err)
 	pp.Println(depositResult)
 
-	createResult, code, msg, err := stakingService.CreateUser("deposit_test", "test1@example.com", "0x12345678")
+	createResult, code, msg, err := stakingService.CreateUser("deposit_test")
 	require.Nil(t, err)
 	require.Equal(t, uint(0), code)
 	require.NotNil(t, createResult)

@@ -13,7 +13,7 @@ func TestUserProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	createResult, code, msg, err := stakingService.CreateUser("1", "test1@example.com", "0x12345678")
+	createResult, code, msg, err := stakingService.CreateUser("1")
 	require.Nil(t, err)
 	require.Equal(t, uint(0), code)
 	require.NotNil(t, createResult)
