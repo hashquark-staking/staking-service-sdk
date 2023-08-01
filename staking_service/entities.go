@@ -44,7 +44,8 @@ type ValidatorDetailList []ValidatorDetail
 type ValidatorList []Validator
 
 type CreateUserParams struct {
-	UID string `json:"uid"`
+	UID              string   `json:"uid"`
+	DepositAddresses []string `json:"depositAddresses"`
 }
 
 type Deposit struct {
