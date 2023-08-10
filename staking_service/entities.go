@@ -79,6 +79,12 @@ type BatchValidatorAssignmentParams struct {
 	TxHashs     []string     `json:"tx_hashs"`
 }
 
+type DepositDataRequestParams struct {
+	Uid               string `json:"uid"`
+	Quantity          uint64 `json:"quantity"`
+	WithdrawalAddress string `json:"withdrawalAddress"`
+}
+
 type Assignment struct {
 	UID            string `json:"uid"`
 	ValidatorCount int    `json:"validatorCount"`
@@ -103,3 +109,23 @@ type Reward struct {
 }
 
 type RewardList []Reward
+
+type DepositDataResponse struct {
+	Network  string            `json:"network"`
+	Protocol string            `json:"protocol"`
+	Ethereum *EthereumResponse `json:"ethereum"`
+}
+
+type EthereumResponse struct {
+	ContractAddress     string             `json:"contractAddress"`
+	EstimatedGas        uint64             `json:"estimatedGas"`
+	UnsignedTransaction string             `json:"unsignedTransaction"`
+	DepositData         []*DepositDataInfo `json:"depositData"`
+}
+
+type DepositDataInfo struct {
+	DepositDataRoot      string `json:"depositDataRoot"`
+	Pubkey               string `json:"pubkey"`
+	Signature            string `json:"signature"`
+	WithdrawalCredential string `json:"withdrawalCredential"`
+}

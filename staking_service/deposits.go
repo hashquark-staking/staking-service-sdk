@@ -45,3 +45,14 @@ func (stakingService *StakingService) BatchAssignDepositedValidators(batchValida
 
 	return processResponse[[]UserValidators](res)
 }
+
+func (stakingService *StakingService) DepositData(depositDataRequestParams DepositDataRequestParams) (result *DepositDataResponse, code uint, msg string, err error) {
+	req := stakingService.getBaseRequest()
+	req.SetBody(depositDataRequestParams)
+	res, err := req.Send("POST", fmt.Sprintf("/openapi/deposits/deposit_data"))
+	if err != nil {
+		return
+	}
+
+	return processResponse[DepositDataResponse](res)
+}
