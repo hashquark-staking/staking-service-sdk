@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/imroc/req/v3"
+	"github.com/rs/zerolog/log"
 
 	"github.com/ethereum/go-ethereum/crypto"
 )
@@ -46,6 +47,7 @@ func (stakingService *StakingService) getBaseRequest() *req.Request {
 }
 
 func processResponse[T any](res *req.Response) (result *T, code uint, msg string, err error) {
+	log.Info().Str("content", res.String()).Msg("Response Content")
 	response := new(Response[T])
 	err = res.UnmarshalJson(response)
 	if err != nil {

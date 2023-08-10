@@ -7,6 +7,7 @@ require (
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/imroc/req/v3 v3.37.0
 	github.com/k0kubun/pp v3.0.1+incompatible
+	github.com/rs/zerolog v1.30.0
 	github.com/stretchr/testify v1.8.1
 )
 

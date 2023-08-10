@@ -11,7 +11,7 @@ func (stakingService *StakingService) sign(nonce string, timestamp int64) (strin
 	bigTime := big.NewInt(timestamp)
 
 	hash := crypto.Keccak256Hash(
-		common.HexToAddress(nonce).Bytes(),
+		[]byte(nonce),
 		common.BigToHash(bigTime).Bytes(),
 	)
 	sign, err := crypto.Sign(hash.Bytes(), stakingService.privateKey)
