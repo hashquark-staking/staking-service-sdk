@@ -4,20 +4,22 @@ import (
 	"fmt"
 )
 
-func (stakingService *StakingService) ValidatorList(validatorListRequestParam ValidatorListRequestParam) (result *PageResult[Validator], code uint, msg string, err error) {
+func (stakingService *StakingService) ValidatorList(validatorListRequestParam ValidatorListRequestParam) (result *PageResult[ValidatorDetail], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
-	req.SetBody(validatorListRequestParam)
+	req.SetQueryParam("pageNum", fmt.Sprintf("%d", validatorListRequestParam.PageNum))
+	req.SetQueryParam("pageSize", fmt.Sprintf("%d", validatorListRequestParam.PageSize))
+	req.SetQueryParam("uid", fmt.Sprintf("%s", validatorListRequestParam.Uid))
 	res, err := req.Send("GET", fmt.Sprintf("/openapi/validators"))
 	if err != nil {
 		return
 	}
-	return processResponse[PageResult[Validator]](res)
+	return processResponse[PageResult[ValidatorDetail]](res)
 }
 
 func (stakingService *StakingService) ValidatorExit(pubkey string, validatorExitParam ValidatorExitParam) (result *string, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetBody(validatorExitParam)
-	res, err := req.Send("POST", fmt.Sprintf("/openapi/%s/exit", pubkey))
+	res, err := req.Send("POST", fmt.Sprintf("/openapi/validators/%s/exit", pubkey))
 	if err != nil {
 		return
 	}
@@ -36,5 +38,6 @@ type PageParams struct {
 }
 
 type ValidatorExitParam struct {
-	Epoch uint64 `json:"epoch"`
+	Epoch     uint64 `json:"epoch"`
+	Broadcast uint64 `json:"broadcast"`
 }
