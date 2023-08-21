@@ -48,6 +48,10 @@ type CreateUserParams struct {
 	DepositAddresses []string `json:"depositAddresses"`
 }
 
+type AddDepositAddressRequest struct {
+	DepositAddresses []string `json:"deposit_addresses"`
+}
+
 type Deposit struct {
 	ID              uint64 `json:"id"`
 	BrokerID        uint64 `json:"brokerId"`

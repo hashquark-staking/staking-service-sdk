@@ -12,10 +12,16 @@ func TestUserProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	createResult, code, msg, err := stakingService.CreateUser("mkx", []string{"0x2B3779A253dB55B98eCED3EF427992740C17db17"})
+	//createResult, code, msg, err := stakingService.CreateUser("mkx", []string{"0x2B3779A253dB55B98eCED3EF427992740C17db17"})
+	//require.Nil(t, err)
+	//require.Equal(t, uint(0), code)
+	//require.NotNil(t, createResult)
+	//require.Equal(t, "ok", msg)
+
+	depositAResult, code, msg, err := stakingService.AddDepositAddress("mkx", []string{"0x6", "0x9"})
 	require.Nil(t, err)
 	require.Equal(t, uint(0), code)
-	require.NotNil(t, createResult)
+	require.NotNil(t, depositAResult)
 	require.Equal(t, "ok", msg)
 
 	//listResult, code, msg, err := stakingService.ListUsers(1, 10)

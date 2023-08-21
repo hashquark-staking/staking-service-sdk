@@ -45,6 +45,24 @@ func (stakingService *StakingService) CreateUser(uid string, depositaddresses []
 	return processResponse[User](res)
 }
 
+func (stakingService *StakingService) AddDepositAddress(uid string, depositaddresses []string) (result *string, code uint, msg string, err error) {
+	addDepositAddressRequest := new(AddDepositAddressRequest)
+	addDepositAddressRequest.DepositAddresses = depositaddresses
+
+	// paramBytes, err := json.Marshal(createUserParams)
+	// if err != nil {
+	// 	return
+	// }
+	req := stakingService.getBaseRequest()
+	req.SetBody(addDepositAddressRequest)
+	res, err := req.Send("POST", fmt.Sprintf("/openapi/users/%s/add_deposit_address", uid))
+	if err != nil {
+		return
+	}
+
+	return processResponse[string](res)
+}
+
 func (stakingService *StakingService) DeleteUser(uid string) (result *string, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	res, err := req.Send("DELETE", fmt.Sprintf("/openapi/users/%s", uid))

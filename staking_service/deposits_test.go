@@ -3,6 +3,7 @@ package staking_service
 import (
 	"fmt"
 	"log"
+	"math/big"
 	"testing"
 )
 
@@ -64,4 +65,13 @@ func TestDepositProcess(t *testing.T) {
 	//require.Equal(t, uint(4000202), code)
 	//require.Nil(t, deleteResult)
 	//require.Equal(t, "Broker User's validators are not all exited yet", msg)
+}
+
+func TestTransact(t *testing.T) {
+	intToBytes32 := func(value *big.Int) [32]byte {
+		var bytes32Value [32]byte
+		copy(bytes32Value[:], value.Bytes())
+		return bytes32Value
+	}
+	fmt.Printf("bytes32 value: %#x\n", intToBytes32(big.NewInt(116)))
 }
