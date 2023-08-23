@@ -16,7 +16,7 @@ func (stakingService *StakingService) ValidatorList(validatorListRequestParam Va
 	return processResponse[PageResult[ValidatorDetail]](res)
 }
 
-func (stakingService *StakingService) ValidatorExit(pubkey string, validatorExitParam ValidatorExitParam) (result *string, code uint, msg string, err error) {
+func (stakingService *StakingService) ValidatorExit(pubkey string, validatorExitParam ValidatorExitParam) (result *ValidatorExitRes, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetBody(validatorExitParam)
 	res, err := req.Send("POST", fmt.Sprintf("/openapi/validators/%s/exit", pubkey))
@@ -24,7 +24,7 @@ func (stakingService *StakingService) ValidatorExit(pubkey string, validatorExit
 		return
 	}
 
-	return processResponse[string](res)
+	return processResponse[ValidatorExitRes](res)
 }
 
 type ValidatorListRequestParam struct {
@@ -40,4 +40,8 @@ type PageParams struct {
 type ValidatorExitParam struct {
 	Epoch     uint64 `json:"epoch"`
 	Broadcast uint64 `json:"broadcast"`
+}
+
+type ValidatorExitRes struct {
+	Signature string `json:"signature"`
 }

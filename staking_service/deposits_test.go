@@ -22,9 +22,9 @@ func TestDepositProcess(t *testing.T) {
 	if err == nil {
 		for _, list := range listResult.Ethereum.DepositData {
 			fmt.Println("---pubkey:", list.Pubkey)
-			fmt.Println("---depositDataRoot:", list.DepositDataRoot)
 			fmt.Println("---withdraw:", list.WithdrawalCredential)
 			fmt.Println("---signature:", list.Signature)
+			fmt.Println("---depositDataRoot:", list.DepositDataRoot)
 
 		}
 	}

@@ -12,7 +12,7 @@ func TestValidatorProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pubkey := "0x80bbab1ced9cfe9d30ba76701b2c43b41c15fa1fd31115db00de7dd58566fdf28ca8a10b0517f1d2eeb68b8719f83e4b"
+	pubkey := "0x93133d5f5c4062ef8f0c8de4637f9e64eaf88f6de9f602625301d3cda466955a8983450342cd0cfbb317c9b93b0004c8"
 	params := ValidatorExitParam{
 		Epoch:     0,
 		Broadcast: 1,
