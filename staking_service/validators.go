@@ -9,7 +9,7 @@ func (stakingService *StakingService) ValidatorList(validatorListRequestParam Va
 	req.SetQueryParam("pageNum", fmt.Sprintf("%d", validatorListRequestParam.PageNum))
 	req.SetQueryParam("pageSize", fmt.Sprintf("%d", validatorListRequestParam.PageSize))
 	req.SetQueryParam("uid", fmt.Sprintf("%s", validatorListRequestParam.Uid))
-	res, err := req.Send("GET", fmt.Sprintf("/openapi/validators"))
+	res, err := req.Send("GET", "/openapi/validators")
 	if err != nil {
 		return
 	}

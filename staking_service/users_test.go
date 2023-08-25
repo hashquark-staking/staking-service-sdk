@@ -18,7 +18,7 @@ func TestUserProcess(t *testing.T) {
 	//require.NotNil(t, createResult)
 	//require.Equal(t, "ok", msg)
 
-	depositAResult, code, msg, err := stakingService.AddDepositAddress("mkx", []string{"0x6", "0x9"})
+	depositAResult, code, msg, err := stakingService.AddDepositAddress("mkx", []string{"0xD29f1f0810f3E679c2D589e5A72EFB4639B606E3"})
 	require.Nil(t, err)
 	require.Equal(t, uint(0), code)
 	require.NotNil(t, depositAResult)

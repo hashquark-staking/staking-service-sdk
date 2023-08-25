@@ -12,13 +12,13 @@ func TestValidatorProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	pubkey := "0x93133d5f5c4062ef8f0c8de4637f9e64eaf88f6de9f602625301d3cda466955a8983450342cd0cfbb317c9b93b0004c8"
+	pubkey := "0xada97cb94e155a65757451f91278b151ecfbdba0d20b45e01bbb69915f5c3774aeff97bc6ebdfce9466204c3fca67a56"
 	params := ValidatorExitParam{
 		Epoch:     0,
 		Broadcast: 1,
 	}
-	_, code, msg, err := stakingService.ValidatorExit(pubkey, params)
-	fmt.Println(err, code, msg)
+	res, code, msg, err := stakingService.ValidatorExit(pubkey, params)
+	fmt.Println(res, err, code, msg)
 
 	//validatorListParams := ValidatorListRequestParam{
 	//	Uid:        "mkx",
