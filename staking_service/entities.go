@@ -21,7 +21,8 @@ type User struct {
 
 type UserDetails struct {
 	User
-	Validators ValidatorDetailList `json:"validators"`
+	DepositAddresses []string            `json:"depositAddresses"`
+	Validators       ValidatorDetailList `json:"validators"`
 }
 
 type Validator struct {
