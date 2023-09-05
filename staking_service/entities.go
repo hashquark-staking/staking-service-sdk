@@ -85,6 +85,7 @@ type BatchValidatorAssignmentParams struct {
 }
 
 type DepositDataRequestParams struct {
+	Origin            string `json:"origin"`
 	Uid               string `json:"uid"`
 	Quantity          uint64 `json:"quantity"`
 	WithdrawalAddress string `json:"withdrawalAddress"`
