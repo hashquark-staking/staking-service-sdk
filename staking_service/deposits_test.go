@@ -15,7 +15,7 @@ func TestDepositProcess(t *testing.T) {
 	}
 	listResult, code, msg, err := stakingService.DepositData(DepositDataRequestParams{
 		Uid:               "mkx",
-		Quantity:          2,
+		Quantity:          1,
 		WithdrawalAddress: "0x2B3779A253dB55B98eCED3EF427992740C17db17",
 	})
 	fmt.Println(listResult, code, msg, err)
