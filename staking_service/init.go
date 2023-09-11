@@ -7,6 +7,7 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/imroc/req/v3"
+	"github.com/rs/zerolog/log"
 
 	"github.com/ethereum/go-ethereum/crypto"
 )
@@ -25,7 +26,7 @@ func NewStakingService(baseURL, privateKey, address string) (*StakingService, er
 	stakingService.privateKey, err = crypto.HexToECDSA(privateKey)
 	stakingService.address = address
 	stakingService.c = req.C()
-	stakingService.c.BaseURL = baseURL
+	stakingService.c.SetBaseURL(baseURL)
 
 	return stakingService, err
 }
@@ -46,6 +47,7 @@ func (stakingService *StakingService) getBaseRequest() *req.Request {
 }
 
 func processResponse[T any](res *req.Response) (result *T, code uint, msg string, err error) {
+	log.Info().Str("content", res.String()).Msg("Response Content")
 	response := new(Response[T])
 	err = res.UnmarshalJson(response)
 	if err != nil {
