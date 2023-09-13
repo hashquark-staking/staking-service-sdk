@@ -118,6 +118,7 @@ type RewardList []Reward
 type DepositDataResponse struct {
 	Network  string            `json:"network"`
 	Protocol string            `json:"protocol"`
+	Period   string            `json:"period"`
 	Ethereum *EthereumResponse `json:"ethereum"`
 }
 
