@@ -135,3 +135,38 @@ type DepositDataInfo struct {
 	Signature            string `json:"signature"`
 	WithdrawalCredential string `json:"withdrawalCredential"`
 }
+
+type PoolRewardInfo struct {
+	AvgYearApr       string `json:"avg_year_apr"`
+	BeginSlot        int    `json:"begin_slot"`
+	CumulativeReward string `json:"cumulative_reward"`
+	DailyReward      string `json:"daily_reward"`
+	Date             string `json:"date"`
+	EndSlot          int    `json:"end_slot"`
+}
+
+type PoolRewardInfoList []PoolRewardInfo
+
+type PooledStakingInfo struct {
+	Amount           string `json:"amount"`
+	CumulativeReward string `json:"cumulative_reward"`
+	Point            string `json:"point"`
+	UserAddress      string `json:"user_address"`
+}
+
+type PooledStakingInfoList []PooledStakingInfo
+
+type UserPooledStakingInfo struct {
+	DepositedEth string `json:"deposited_eth"`
+	TotalEth     string `json:"total_eth"`
+}
+
+type PooledWithdrawRequestInfo struct {
+	RequestID      int    `json:"request_id"`
+	User           string `json:"user"`
+	Point          string `json:"point"`
+	Amount         string `json:"amount"`
+	Principal      string `json:"principal"`
+	WithdrawTxhash string `json:"withdraw_txhash"`
+	Description    string `json:"description"`
+}
