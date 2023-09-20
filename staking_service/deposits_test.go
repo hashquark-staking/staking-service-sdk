@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestDepositProcess(t *testing.T) {
@@ -13,21 +15,30 @@ func TestDepositProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	listResult, code, msg, err := stakingService.DepositData(DepositDataRequestParams{
+	depositResult, code, msg, err := stakingService.DepositData(DepositDataRequestParams{
 		Uid:               "mkx",
-		Quantity:          1,
+		Quantity:          5,
 		WithdrawalAddress: "0x2B3779A253dB55B98eCED3EF427992740C17db17",
 	})
-	fmt.Println(listResult, code, msg, err)
+	fmt.Println("finish time:", time.Now())
+	fmt.Println(*depositResult, code, msg, err)
+	fmt.Println("period:", depositResult.Period)
+	Pubkeys := make([]string, len(depositResult.Ethereum.DepositData))
+	withdrawalCredentials := make([]string, len(depositResult.Ethereum.DepositData))
+	signatures := make([]string, len(depositResult.Ethereum.DepositData))
+	depositDataRoots := make([]string, len(depositResult.Ethereum.DepositData))
 	if err == nil {
-		for _, list := range listResult.Ethereum.DepositData {
-			fmt.Println("---pubkey:", list.Pubkey)
-			fmt.Println("---withdraw:", list.WithdrawalCredential)
-			fmt.Println("---signature:", list.Signature)
-			fmt.Println("---depositDataRoot:", list.DepositDataRoot)
-
+		for i, list := range depositResult.Ethereum.DepositData {
+			Pubkeys[i] = `"` + list.Pubkey + `"`
+			withdrawalCredentials[i] = `"` + list.WithdrawalCredential + `"`
+			signatures[i] = `"` + list.Signature + `"`
+			depositDataRoots[i] = `"` + list.DepositDataRoot + `"`
 		}
 	}
+	fmt.Println("---Pubkeys:", "["+strings.Join(Pubkeys, ",")+"]")
+	fmt.Println("---withdrawalCredentials:", "["+strings.Join(withdrawalCredentials, ",")+"]")
+	fmt.Println("---signatures:", "["+strings.Join(signatures, ",")+"]")
+	fmt.Println("---depositDataRoots:", "["+strings.Join(depositDataRoots, ",")+"]")
 
 	//listResult, code, msg, err := stakingService.ListDeposits(1, 10)
 	//fmt.Println(listResult, code, msg, err)
@@ -73,5 +84,5 @@ func TestTransact(t *testing.T) {
 		copy(bytes32Value[:], value.Bytes())
 		return bytes32Value
 	}
-	fmt.Printf("bytes32 value: %#x\n", intToBytes32(big.NewInt(116)))
+	fmt.Printf("bytes32 value: %#x\n", intToBytes32(big.NewInt(116))) // 0x7400000000000000000000000000000000000000000000000000000000000000
 }
