@@ -59,7 +59,7 @@ func (stakingService *StakingService) DepositData(depositDataRequestParams Depos
 
 func (stakingService *StakingService) ManualDeposit(txHash string) (result *string, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
-	res, err := req.Send("GET", fmt.Sprintf("/openapi/manual_deposit/%s", txHash))
+	res, err := req.Send("GET", fmt.Sprintf("/openapi/deposits/manual_deposit/%s", txHash))
 	if err != nil {
 		return
 	}
