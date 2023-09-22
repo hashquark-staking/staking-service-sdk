@@ -13,7 +13,7 @@ func TestDepositProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, code, msg, err := stakingService.ManualDeposit("0x0361f7813b412e8cbd026b930022d3d728f7d6690b430881d193b89190758b47")
+	result, code, msg, err := stakingService.ManualDepositBrokerUser("0x0361f7813b412e8cbd026b930022d3d728f7d6690b430881d193b89190758b47")
 	fmt.Println("--result:", result)
 	fmt.Println("--code:", code)
 	fmt.Println("--msg:", msg)

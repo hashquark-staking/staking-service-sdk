@@ -57,9 +57,19 @@ func (stakingService *StakingService) DepositData(depositDataRequestParams Depos
 	return processResponse[DepositDataResponse](res)
 }
 
-func (stakingService *StakingService) ManualDeposit(txHash string) (result *string, code uint, msg string, err error) {
+func (stakingService *StakingService) ManualDepositBrokerUser(txHash string) (result *string, code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
-	res, err := req.Send("GET", fmt.Sprintf("/openapi/deposits/manual_deposit/%s", txHash))
+	res, err := req.Send("GET", fmt.Sprintf("/openapi/deposits/manual_deposit/broker_user/%s", txHash))
+	if err != nil {
+		return
+	}
+
+	return processResponse[string](res)
+}
+
+func (stakingService *StakingService) ManualDepositBroker(txHash string) (result *string, code uint, msg string, err error) {
+	req := stakingService.getBaseRequest()
+	res, err := req.Send("GET", fmt.Sprintf("/openapi/deposits/manual_deposit/broker/%s", txHash))
 	if err != nil {
 		return
 	}
