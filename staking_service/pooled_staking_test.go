@@ -46,6 +46,16 @@ func TestGetWithdrawRequestInfo(t *testing.T) {
 	fmt.Println(result, code, msg, err)
 }
 
+func TestGetUserWithdrawPossible(t *testing.T) {
+	setupTest()
+	stakingService, err := NewStakingService(STAKING_SERVICE_BASE_URL, PRIVATE_KEY, ADDRESS)
+	if err != nil {
+		log.Fatal(err)
+	}
+	result, code, msg, err := stakingService.GetUserWithdrawPossible("0x91bC9Eefca5BdF2dB609879AeDc579c70a0Ae901")
+	fmt.Println(result, code, msg, err)
+}
+
 func pointer[T any](s T) *T {
 	return &s
 }

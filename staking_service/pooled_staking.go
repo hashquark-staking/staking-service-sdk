@@ -50,3 +50,13 @@ func (stakingService *StakingService) GetWithdrawRequestInfo(requestID uint64) (
 
 	return processResponse[PooledWithdrawRequestInfo](res)
 }
+
+func (stakingService *StakingService) GetUserWithdrawPossible(userAddress string) (result *WithdrawPossibleBlock, code uint, msg string, err error) {
+	req := stakingService.getBaseRequest()
+	res, err := req.Send("GET", fmt.Sprintf("/openapi/pooled_staking/users/%s/withdraw_possible", userAddress))
+	if err != nil {
+		return
+	}
+
+	return processResponse[WithdrawPossibleBlock](res)
+}
