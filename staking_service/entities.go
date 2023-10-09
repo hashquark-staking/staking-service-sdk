@@ -170,3 +170,7 @@ type PooledWithdrawRequestInfo struct {
 	WithdrawTxhash string `json:"withdraw_txhash"`
 	Description    string `json:"description"`
 }
+
+type WithdrawPossibleBlock struct {
+	CanWithdrawBlock string `json:"can_withdraw_block"`
+}
