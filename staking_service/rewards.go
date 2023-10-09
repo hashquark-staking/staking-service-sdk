@@ -39,7 +39,7 @@ func (stakingService *StakingService) QuarterlyRewards(uid string, startTime int
 	}
 	req.SetQueryParam("startTime", fmt.Sprintf("%d", startTime))
 	req.SetQueryParam("endTime", fmt.Sprintf("%d", endTime))
-	res, err := req.Send("GET", "/openapi/rewards/quaterly")
+	res, err := req.Send("GET", "/openapi/rewards/quarterly")
 	if err != nil {
 		return
 	}
