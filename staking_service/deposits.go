@@ -76,3 +76,14 @@ func (stakingService *StakingService) ManualDepositBroker(txHash string) (result
 
 	return processResponse[string](res)
 }
+
+func (stakingService *StakingService) SendTransaction(sendTransactionRequestParams SendTransactionRequestParams) (result *SendTransactionResponse, code uint, msg string, err error) {
+	req := stakingService.getBaseRequest()
+	req.SetBody(sendTransactionRequestParams)
+	res, err := req.Send("POST", "/openapi/deposits")
+	if err != nil {
+		return
+	}
+
+	return processResponse[SendTransactionResponse](res)
+}

@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestDepositProcess(t *testing.T) {
@@ -13,37 +15,38 @@ func TestDepositProcess(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	result, code, msg, err := stakingService.ManualDepositBrokerUser("0x0361f7813b412e8cbd026b930022d3d728f7d6690b430881d193b89190758b47")
-	fmt.Println("--result:", result)
-	fmt.Println("--code:", code)
-	fmt.Println("--msg:", msg)
-	fmt.Println("--err:", err)
+	//result, code, msg, err := stakingService.ManualDepositBrokerUser("0x0361f7813b412e8cbd026b930022d3d728f7d6690b430881d193b89190758b47")
+	//fmt.Println("--result:", result)
+	//fmt.Println("--code:", code)
+	//fmt.Println("--msg:", msg)
+	//fmt.Println("--err:", err)
 
-	//depositResult, code, msg, err := stakingService.DepositData(DepositDataRequestParams{
-	//	Uid:               "mkx",
-	//	Quantity:          5,
-	//	WithdrawalAddress: "0x2B3779A253dB55B98eCED3EF427992740C17db17",
-	//})
-	//fmt.Println("finish time:", time.Now())
-	//fmt.Println(*depositResult, code, msg, err)
-	//fmt.Println("period:", depositResult.Period)
-	//Pubkeys := make([]string, len(depositResult.Ethereum.DepositData))
-	//withdrawalCredentials := make([]string, len(depositResult.Ethereum.DepositData))
-	//signatures := make([]string, len(depositResult.Ethereum.DepositData))
-	//depositDataRoots := make([]string, len(depositResult.Ethereum.DepositData))
-	//if err == nil {
-	//	for i, list := range depositResult.Ethereum.DepositData {
-	//		Pubkeys[i] = `"` + list.Pubkey + `"`
-	//		withdrawalCredentials[i] = `"` + list.WithdrawalCredential + `"`
-	//		signatures[i] = `"` + list.Signature + `"`
-	//		depositDataRoots[i] = `"` + list.DepositDataRoot + `"`
-	//	}
-	//}
-	//fmt.Println("---Pubkeys:", "["+strings.Join(Pubkeys, ",")+"]")
-	//fmt.Println("---withdrawalCredentials:", "["+strings.Join(withdrawalCredentials, ",")+"]")
-	//fmt.Println("---signatures:", "["+strings.Join(signatures, ",")+"]")
-	//fmt.Println("---depositDataRoots:", "["+strings.Join(depositDataRoots, ",")+"]")
-	//
+	depositResult, code, msg, err := stakingService.DepositData(DepositDataRequestParams{
+		Uid:               "mkx",
+		Quantity:          1,
+		WithdrawalAddress: "0x2B3779A253dB55B98eCED3EF427992740C17db17",
+	})
+	fmt.Println("finish time:", time.Now())
+	fmt.Println(*depositResult, code, msg, err)
+	fmt.Println("period:", depositResult.Period)
+	Pubkeys := make([]string, len(depositResult.Ethereum.DepositData))
+	withdrawalCredentials := make([]string, len(depositResult.Ethereum.DepositData))
+	signatures := make([]string, len(depositResult.Ethereum.DepositData))
+	depositDataRoots := make([]string, len(depositResult.Ethereum.DepositData))
+	if err == nil {
+		for i, list := range depositResult.Ethereum.DepositData {
+			Pubkeys[i] = `"` + list.Pubkey + `"`
+			withdrawalCredentials[i] = `"` + list.WithdrawalCredential + `"`
+			signatures[i] = `"` + list.Signature + `"`
+			depositDataRoots[i] = `"` + list.DepositDataRoot + `"`
+		}
+	}
+	fmt.Println("---Pubkeys:", "["+strings.Join(Pubkeys, ",")+"]")
+	fmt.Println("---withdrawalCredentials:", "["+strings.Join(withdrawalCredentials, ",")+"]")
+	fmt.Println("---signatures:", "["+strings.Join(signatures, ",")+"]")
+	fmt.Println("---depositDataRoots:", "["+strings.Join(depositDataRoots, ",")+"]")
+	fmt.Println("---unsignedTransaction:", depositResult.Ethereum.UnsignedTransaction)
+
 	//listResult, code, msg, err := stakingService.ListDeposits(1, 10)
 	//fmt.Println(listResult, code, msg, err)
 	//

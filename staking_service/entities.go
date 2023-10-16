@@ -86,8 +86,17 @@ type BatchValidatorAssignmentParams struct {
 
 type DepositDataRequestParams struct {
 	Uid               string `json:"uid"`
-	Quantity          uint64 `json:"quantity"`
+	Quantity          int64  `json:"quantity"`
 	WithdrawalAddress string `json:"withdrawalAddress"`
+}
+
+type SendTransactionRequestParams struct {
+	SignedTransaction string `json:"signedTransaction"`
+	ChainName         string `json:"chainName"`
+}
+
+type SendTransactionResponse struct {
+	TxHash string `json:"txHash"`
 }
 
 type Assignment struct {
