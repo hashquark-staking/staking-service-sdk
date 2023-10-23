@@ -60,3 +60,17 @@ func (stakingService *StakingService) GetUserWithdrawPossible(userAddress string
 
 	return processResponse[WithdrawPossibleBlock](res)
 }
+
+func (stakingService *StakingService) GetTransactionHistory(userAddress string, txType, pageNum, pageSize int64) (result *PageResult[TransactionList], code uint, msg string, err error) {
+	req := stakingService.getBaseRequest()
+	req.SetQueryParam("type", strconv.FormatInt(txType, 10))
+	req.SetQueryParam("pageNum", strconv.FormatInt(pageNum, 10))
+	req.SetQueryParam("pageSize", strconv.FormatInt(pageSize, 10))
+
+	res, err := req.Send("GET", fmt.Sprintf("/openapi/pooled_staking/users/%s/history", userAddress))
+	if err != nil {
+		return
+	}
+
+	return processResponse[PageResult[TransactionList]](res)
+}

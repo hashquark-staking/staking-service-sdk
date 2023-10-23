@@ -92,7 +92,6 @@ type DepositDataRequestParams struct {
 
 type SendTransactionRequestParams struct {
 	SignedTransaction string `json:"signedTransaction"`
-	ChainName         string `json:"chainName"`
 }
 
 type SendTransactionResponse struct {
@@ -182,4 +181,15 @@ type PooledWithdrawRequestInfo struct {
 
 type WithdrawPossibleBlock struct {
 	CanWithdrawBlock string `json:"can_withdraw_block"`
+}
+
+type TransactionList []*TransactionInfo
+
+type TransactionInfo struct {
+	Amount         float32 `json:"amount"`
+	Type           uint64  `json:"type"`
+	TxTime         uint64  `json:"txTime"`
+	Status         string  `json:"status"`
+	TxHash         string  `json:"txHash"`
+	WithdrawalHash string  `json:"withdrawalHash"`
 }
