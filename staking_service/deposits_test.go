@@ -9,6 +9,16 @@ import (
 	"time"
 )
 
+func TestManuallyBroker(t *testing.T) {
+	setupTest()
+	stakingService, err := NewStakingService(STAKING_SERVICE_BASE_URL, PRIVATE_KEY, ADDRESS)
+	if err != nil {
+		log.Fatal(err)
+	}
+	result, code, msg, err := stakingService.ManualDepositBroker("0xaa5ea3f7b48363782cee354665b414ae0d7f6d06b70c8b7dd30cac3be130b582")
+	fmt.Println(result, code, msg, err)
+	t.Log(result, code, msg, err)
+}
 func TestDepositProcess(t *testing.T) {
 	setupTest()
 	stakingService, err := NewStakingService(STAKING_SERVICE_BASE_URL, PRIVATE_KEY, ADDRESS)
