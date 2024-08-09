@@ -78,7 +78,7 @@ func (stakingService *StakingService) GetDelegatorOverview(chainName, validatorI
 
 	return processResponse[DelegatorOverview](res)
 }
-func (stakingService *StakingService) ListDelegatesForDelegator(chainName, validatorID, delegatorID string, pageParams PageParams) (result *DelegateTransactionList, code uint, msg string, err error) {
+func (stakingService *StakingService) ListDelegatesForDelegator(chainName, validatorID, delegatorID string, pageParams PageParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetQueryParam("validatorID", validatorID)
 	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageParams.PageNum))
@@ -88,7 +88,7 @@ func (stakingService *StakingService) ListDelegatesForDelegator(chainName, valid
 		return
 	}
 
-	return processResponse[DelegateTransactionList](res)
+	return processResponse[PageResult[DelegateTransaction]](res)
 }
 func (stakingService *StakingService) ListRewardsForDelegator(chainName, validatorID, delegatorID string, pageParams PageParams) (result *PageResult[DelegatorReward], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()

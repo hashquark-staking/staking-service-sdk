@@ -20,16 +20,16 @@ func TestAllDelegation(t *testing.T) {
 		PageSize: 10,
 	}
 
-	// result1, code, msg, err := stakingService.ListDelegatedValidators(chainName)
-	// fmt.Println(result1, code, msg, err)
-	// result2, code, msg, err := stakingService.GetDelegatedValidatorInfo(chainName, validatorID)
-	// fmt.Println(result2, code, msg, err)
+	result1, code, msg, err := stakingService.ListDelegatedValidators(chainName)
+	fmt.Println(result1, code, msg, err)
+	result2, code, msg, err := stakingService.GetDelegatedValidatorInfo(chainName, validatorID)
+	fmt.Println(result2, code, msg, err)
 
-	// result3, code, msg, err := stakingService.ListDelegatesForValidator(chainName, validatorID, pageParams)
-	// fmt.Println(result3, code, msg, err)
+	result3, code, msg, err := stakingService.ListDelegatesForValidator(chainName, validatorID, pageParams)
+	fmt.Println(result3, code, msg, err)
 
-	// result4, code, msg, err := stakingService.ListRewardsForValidator(chainName, validatorID, pageParams)
-	// fmt.Println(result4, code, msg, err)
+	result4, code, msg, err := stakingService.ListRewardsForValidator(chainName, validatorID, pageParams)
+	fmt.Println(result4, code, msg, err)
 
 	result5, code, msg, err := stakingService.ListDelegators(chainName, validatorID)
 	fmt.Println(result5, code, msg, err)
