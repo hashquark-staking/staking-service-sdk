@@ -23,7 +23,8 @@ func (stakingService *StakingService) GetDelegatedValidatorInfo(chainName, valid
 	return processResponse[DelegatedValidator](res)
 }
 
-func (stakingService *StakingService) ListDelegatesForValidator(chainName, validatorID string, pageParams PageParams) (result *DelegateTransactionList, code uint, msg string, err error) {
+// ListDelegatesForValidator 方法用于获取某个验证者的所有委托记录
+func (stakingService *StakingService) ListDelegatesForValidator(chainName, validatorID string, pageParams PageParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageParams.PageNum))
 	req.SetQueryParam("pageSize", fmt.Sprintf("%d", pageParams.PageSize))
@@ -32,8 +33,10 @@ func (stakingService *StakingService) ListDelegatesForValidator(chainName, valid
 		return
 	}
 
-	return processResponse[DelegateTransactionList](res)
+	// 处理响应并返回结果
+	return processResponse[PageResult[DelegateTransaction]](res)
 }
+
 func (stakingService *StakingService) ListRewardsForValidator(chainName, validatorID string, pageParams PageParams) (result *PageResult[DelegatedValidatorReward], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageParams.PageNum))
