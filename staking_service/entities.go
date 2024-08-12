@@ -263,3 +263,8 @@ type DelegateTransaction struct {
 }
 
 type DelegateTransactionList []DelegateTransaction
+
+type ListDelegatesParams struct {
+	PageParams
+	OperationType int `json:"operationType"`
+}

@@ -24,10 +24,13 @@ func (stakingService *StakingService) GetDelegatedValidatorInfo(chainName, valid
 }
 
 // ListDelegatesForValidator 方法用于获取某个验证者的所有委托记录
-func (stakingService *StakingService) ListDelegatesForValidator(chainName, validatorID string, pageParams PageParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
+func (stakingService *StakingService) ListDelegatesForValidator(chainName, validatorID string, params ListDelegatesParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
-	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageParams.PageNum))
-	req.SetQueryParam("pageSize", fmt.Sprintf("%d", pageParams.PageSize))
+	req.SetQueryParam("pageNum", fmt.Sprintf("%d", params.PageNum))
+	req.SetQueryParam("pageSize", fmt.Sprintf("%d", params.PageSize))
+	if params.OperationType != 0 {
+		req.SetQueryParam("operationType", fmt.Sprintf("%d", params.OperationType))
+	}
 	res, err := req.Send("GET", fmt.Sprintf("/openapi/delegation/%s/validators/%s/delegates", chainName, validatorID))
 	if err != nil {
 		return
@@ -81,11 +84,14 @@ func (stakingService *StakingService) GetDelegatorOverview(chainName, validatorI
 
 	return processResponse[DelegatorOverview](res)
 }
-func (stakingService *StakingService) ListDelegatesForDelegator(chainName, validatorID, delegatorID string, pageParams PageParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
+func (stakingService *StakingService) ListDelegatesForDelegator(chainName, validatorID, delegatorID string, params ListDelegatesParams) (result *PageResult[DelegateTransaction], code uint, msg string, err error) {
 	req := stakingService.getBaseRequest()
 	req.SetQueryParam("validatorID", validatorID)
-	req.SetQueryParam("pageNum", fmt.Sprintf("%d", pageParams.PageNum))
-	req.SetQueryParam("pageSize", fmt.Sprintf("%d", pageParams.PageSize))
+	req.SetQueryParam("pageNum", fmt.Sprintf("%d", params.PageNum))
+	req.SetQueryParam("pageSize", fmt.Sprintf("%d", params.PageSize))
+	if params.OperationType != 0 {
+		req.SetQueryParam("operationType", fmt.Sprintf("%d", params.OperationType))
+	}
 	res, err := req.Send("GET", fmt.Sprintf("/openapi/delegation/%s/delegators/%s/delegates", chainName, delegatorID))
 	if err != nil {
 		return
