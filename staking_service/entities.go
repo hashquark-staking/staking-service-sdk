@@ -268,3 +268,15 @@ type ListDelegatesParams struct {
 	PageParams
 	OperationType int `json:"operationType"`
 }
+
+type GenerateStakingRequestParams struct {
+	StakerPublicKeyHex string `json:"stakerPublicKeyHex"`
+	StakingAmount      int64  `json:"stakingAmount"`
+	StakingTimeBlocks  int64  `json:"stakingTimeBlocks"`
+	TxInclusionHeight  uint64 `json:"txInclusionHeight"`
+}
+
+type GenerateStakingRequestResp struct {
+	StakingTxHex string `json:"staking_tx_hex"`
+	RequestID    string `json:"request_id"`
+}
