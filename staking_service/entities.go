@@ -195,15 +195,18 @@ type TransactionInfo struct {
 }
 
 type DelegatedValidator struct {
-	ChainName    string `json:"chainName"`
-	ValidatorID  string `json:"validatorID"`
-	Commission   uint   `json:"commission"`
-	Principal    string `json:"principal"`
-	Status       string `json:"status"`
-	StatusOrigin int    `json:"statusOrigin"`
-	APR          int64  `json:"apr"`
-	AppearTime   uint64 `json:"appearTime"`
-	DelegatorNum int64  `json:"delegatorNum"`
+	ChainName       string `json:"chainName"`
+	ValidatorID     string `json:"validatorID"`
+	Commission      uint   `json:"commission"`
+	Principal       string `json:"principal"`
+	SelfPrincipal   string `json:"selfPrincipal"`
+	Status          string `json:"status"`
+	StatusOrigin    int    `json:"statusOrigin"`
+	APR             int64  `json:"apr"`
+	AppearTime      uint64 `json:"appearTime"`
+	DelegatorNum    int64  `json:"delegatorNum"`
+	MaxDelegatorNum int64  `json:"maxDelegatorNum"`
+	Extra           string `json:"extra"`
 }
 
 type DelegatedValidatorList []DelegatedValidator
@@ -213,18 +216,20 @@ type Delegator struct {
 	ValidatorID string `json:"validatorID"`
 	DelegatorID string `json:"delegatorID"`
 	Principal   string `json:"principal"`
+	Extra       string `json:"extra"`
 }
 
 type DelegatorOverview struct {
-	StakedAmount                  string `json:"stakedAmount"`
-	UnlockAmount                  string `json:"unlockAmount"`
-	ReadyToClaim                  string `json:"readyToClaim"`
-	HistoricalRewardsForStaker    string `json:"historicalRewardsForStaker"`
-	HistoricalClaimedRewards      string `json:"historicalClaimedRewards"`
-	HistoricalRewardsForValidator string `json:"historicalRewardsForValidator"`
-	HistoricalReferralCommission  string `json:"historicalReferralCommission"`
-	SettledReferralCommission     string `json:"settledReferralCommission"`
-	UnsettledReferralCommission   string `json:"unsettledReferralCommission"`
+	StakedAmount                  float64 `json:"stakedAmount"`
+	UnlockAmount                  float64 `json:"unlockAmount"`
+	PendingAmount                 float64 `json:"pendingAmount"`
+	ReadyToClaim                  float64 `json:"readyToClaim"`
+	HistoricalRewardsForDelegator float64 `json:"historicalRewardsForDelegator"`
+	HistoricalClaimedRewards      float64 `json:"historicalClaimedRewards"`
+	HistoricalRewardsForValidator float64 `json:"historicalRewardsForValidator"`
+	HistoricalReferralCommission  float64 `json:"historicalReferralCommission"`
+	SettledReferralCommission     float64 `json:"settledReferralCommission"`
+	UnsettledReferralCommission   float64 `json:"unsettledReferralCommission"`
 }
 
 type DelegatedValidatorReward struct {
@@ -233,11 +238,11 @@ type DelegatedValidatorReward struct {
 	// Identifier为收益周期，即如果是每个Epoch统计收益即为Epoch，如果是某个BlockHeight分发收益则记录BlockHeight，如果是按时间周期，则记录时间或者日期。
 	Identifier string `json:"identifier"`
 	// 确定的Block Height或者收益周期的block起始值，用逗号分隔
-	Block      string `json:"block"`
-	Amount     string `json:"amount"`
-	RewardTime uint64 `json:"rewardTime"`
-	Principal  string `json:"principal"`
-	Commission uint   `json:"commission"` // Commission Rate, 统一为 百分比 * 100，例如: 12.34% 为 1234
+	Block      string  `json:"block"`
+	Amount     float64 `json:"amount"`
+	RewardTime uint64  `json:"rewardTime"`
+	Principal  float64 `json:"principal"`
+	Commission uint    `json:"commission"` // Commission Rate, 统一为 百分比 * 100，例如: 12.34% 为 1234
 }
 
 type DelegatedValidatorRewardList []DelegatedValidatorReward
@@ -250,10 +255,10 @@ type DelegatorReward struct {
 type DelegatorRewardList []DelegatorReward
 
 type DelegateTransaction struct {
-	ChainName   string `json:"chainName"`
-	ValidatorID string `json:"validatorID"`
-	DelegatorID string `json:"delegatorID"`
-	Amount      string `json:"amount"`
+	ChainName   string  `json:"chainName"`
+	ValidatorID string  `json:"validatorID"`
+	DelegatorID string  `json:"delegatorID"`
+	Amount      float64 `json:"amount"`
 	// 交易中的operationType在数据库中存为数字，1为Delegate，2为Undelegate，3为Claim Reward，注意在任何场景中，给用户打钱的交易都记为Claim，即假如取款不分两部，则取款交易记为3
 	OperationType       string `json:"operationType"`
 	OperationTypeOrigin int    `json:"operationTypeOrigin"`
