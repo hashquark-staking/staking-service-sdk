@@ -276,7 +276,16 @@ type GenerateStakingRequestParams struct {
 	TxInclusionHeight  uint64 `json:"txInclusionHeight"`
 }
 
+type GenerateBroadcastStakingRequestParams struct {
+	StakingTransactionHex string `json:"stakingTransactionHex"`
+	RequestID             string `json:"requestId"`
+}
+
 type GenerateStakingRequestResp struct {
 	StakingTxHex string `json:"staking_tx_hex"`
 	RequestID    string `json:"request_id"`
+}
+
+type BroadcastBabylonStakingTxResp struct {
+	TxHex string `json:"txHex"`
 }
